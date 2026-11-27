@@ -1,0 +1,15 @@
+import { memo, ReactNode } from 'react';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useOnlyus } from '@/hooks/useOnlyus';
+import { sharedStyles } from '@/constants/styles';
+import { spacing, contrastText } from '@/constants/theme';
+import { Button, Card } from './Controls';
+import { Screen, Heading } from '@/components/layout/Screen';
+import { useRouter } from 'expo-router';
+interface ChipBarProps { value: string; options: { key: string; title: string }[]; onChange: (key: string) => void; }
+export const ChipBar = memo(function ChipBar({ value, options, onChange }: ChipBarProps) { const { colors } = useOnlyus(); return <View style={sharedStyles.chipRow}><ScrollView horizontal contentContainerStyle={styles.chips} showsHorizontalScrollIndicator={false}>{options.map(option => { const selected = option.key === value; return <Pressable key={option.key} accessibilityRole="button" accessibilityState={{ selected }} onPress={() => onChange(option.key)} style={({ pressed }) => [sharedStyles.chip, { backgroundColor: selected ? colors.primary : colors.surface, borderColor: selected ? colors.primary : colors.border, opacity: pressed ? .7 : 1 }]}><Text style={[sharedStyles.chipText, { color: selected ? contrastText(colors.primary) : colors.text }]}>{option.title}</Text></Pressable>; })}</ScrollView></View>; });
+interface ConfirmProps { visible: boolean; title: string; message: string; busy?: boolean; onCancel: () => void; onConfirm: () => void; }
+export const ConfirmDialog = memo(function ConfirmDialog({ visible, title, message, busy = false, onCancel, onConfirm }: ConfirmProps) { const { colors } = useOnlyus(); return <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}><View style={[styles.overlay, { backgroundColor: colors.background }]}><View style={styles.dialog}><Card><Heading title={title} subtitle={message} /><Button title="Konfirmasi" variant="danger" loading={busy} onPress={onConfirm} /><Button title="Batal" variant="secondary" disabled={busy} onPress={onCancel} /></Card></View></View></Modal>; });
+interface FeatureGateProps { ready: boolean; children: ReactNode; title: string; tab?: boolean; }
+export function FeatureGate({ ready, children, title, tab = true }: FeatureGateProps) { const router = useRouter(); if (ready) return <>{children}</>; return <Screen tab={tab}><Heading eyebrow="JUST YOU, JUST ME, JUST US" title={title} subtitle="Fitur ini tersedia setelah dua akun terhubung dalam Couple Space aktif." /><Card><Heading title="Satu ruang. Dua hati." subtitle="Buat ruang dan bagikan kode undangan kepada pasanganmu, atau masukkan kode dari pasangan." /><Button title="Hubungkan pasangan" icon="link" onPress={() => router.push('/space')} /></Card></Screen>; }
+const styles = StyleSheet.create({ chips: { alignItems: 'center', gap: spacing.xs, paddingVertical: 2 }, overlay: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing.md }, dialog: { width: '100%', maxWidth: 480 } });

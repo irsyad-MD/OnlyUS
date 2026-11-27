@@ -1,0 +1,1 @@
+export function errorMessage(value: unknown): string { if (value && typeof value === 'object' && 'message' in value) return String(value.message); return typeof value === 'string' ? value : 'Terjadi kesalahan. Silakan coba kembali.'; }

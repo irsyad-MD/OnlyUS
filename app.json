@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "OnlyUS",
+    "slug": "onlyus",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "https://cdn-ai.onspace.ai/onspace/files/C2QkkxshR5ydP4w2fLy9N9/selfie-time-1786887702720.jpg",
+    "scheme": "onspaceapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": { "UIBackgroundModes": ["audio"] }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "https://cdn-ai.onspace.ai/onspace/files/C2QkkxshR5ydP4w2fLy9N9/selfie-time-1786887702720.jpg",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "https://cdn-ai.onspace.ai/onspace/files/C2QkkxshR5ydP4w2fLy9N9/selfie-time-1786887702720.jpg"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "https://cdn-ai.onspace.ai/onspace/files/C2QkkxshR5ydP4w2fLy9N9/selfie-time-1786887702720.jpg",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-web-browser",
+      ["expo-image-picker", { "photosPermission": "OnlyUS mengakses foto pilihanmu untuk profil, artwork, kenangan, dan sesi video.", "cameraPermission": "OnlyUS menggunakan kamera untuk foto profil dan kenangan.", "microphonePermission": false }],
+      ["expo-media-library", { "photosPermission": "OnlyUS membaca tanggal asli foto yang kamu pilih.", "savePhotosPermission": "OnlyUS menyimpan hasil gambar ke galeri atas permintaanmu.", "granularPermissions": ["photo"] }],
+      ["expo-location", { "locationWhenInUsePermission": "OnlyUS membagikan lokasi hanya kepada pasangan setelah persetujuanmu, saat aplikasi aktif." }],
+      ["expo-video", { "supportsBackgroundPlayback": true }],
+      "expo-notifications",
+      ["react-native-android-widget", { "widgets": [{ "name": "OnlyusSmall", "label": "OnlyUS Kecil", "description": "Goresan terbaru dari pasangan", "minWidth": "160dp", "minHeight": "160dp", "targetCellWidth": 2, "targetCellHeight": 2, "updatePeriodMillis": 1800000 }, { "name": "OnlyusMedium", "label": "OnlyUS Sedang", "description": "Gambar pasangan untuk layar utama", "minWidth": "260dp", "minHeight": "240dp", "targetCellWidth": 3, "targetCellHeight": 3, "updatePeriodMillis": 1800000 }] }]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

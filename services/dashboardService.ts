@@ -1,0 +1,2 @@
+export function greeting() { const hour = new Date().getHours(); return hour < 11 ? 'Selamat pagi' : hour < 15 ? 'Selamat siang' : hour < 18 ? 'Selamat sore' : 'Selamat malam'; }
+export function daysTogether(date: string | null | undefined): number | null { if (!date) return null; const start = Date.parse(`${date}T00:00:00Z`); const now = new Date(); const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()); return Number.isFinite(start) ? Math.max(0, Math.floor((today - start) / 86400000)) : null; }
